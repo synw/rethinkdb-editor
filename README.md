@@ -21,7 +21,8 @@ Install and run
    go install github.com/synw/rethinkdb-editor
    ```
 
-Create a `config.json` file in the same folder than the binary:
+Grab the generated binary file and create a `config.json` file in the same folder than the binary. 
+Set your database location and credentials:
 
    ```javascript
    {
