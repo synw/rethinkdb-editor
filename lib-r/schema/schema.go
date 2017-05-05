@@ -70,7 +70,7 @@ var Schem, _ = graphql.NewSchema(
 	},
 )
 
-func ExecuteQuery(query string, schema graphql.Schema) (*graphql.Result, *terr.Trace) {
+func RunQuery(query string, schema graphql.Schema) (*graphql.Result, *terr.Trace) {
 	result := graphql.Do(graphql.Params{
 		Schema: Schem,
 		RequestString: query,
@@ -83,6 +83,8 @@ func ExecuteQuery(query string, schema graphql.Schema) (*graphql.Result, *terr.T
 	}
 	return result, nil
 }
+
+// queries
 
 func getTables(dbstr string) ([]*Table, *terr.Trace) {
 	var tables []*Table

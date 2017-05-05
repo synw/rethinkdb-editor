@@ -6,7 +6,6 @@ import (
 	"time"
 	"os"
 	"context"
-	"bytes"
 	"html/template"
 	"path/filepath"
 	"encoding/json"
@@ -84,17 +83,11 @@ func Stop() *terr.Trace {
 
 func handleQuery(response http.ResponseWriter, request *http.Request) {
 	q := request.URL.Query()["query"][0]
-	result, tr := schema.ExecuteQuery(q, schema.Schem)
+	result, tr := schema.RunQuery(q, schema.Schem)
 	if tr != nil {
 		fmt.Println(tr.Formatc())
 	}
 	json_bytes, err := json.Marshal(result.Data)
-	if err != nil {
-		fmt.Println(err)
-	}
-	var prettyJSON bytes.Buffer
-    _ = json.Indent(&prettyJSON, json_bytes, "", "    ")
-	//fmt.Println("JSON", string(prettyJSON.Bytes()))
 	if err != nil {
 		fmt.Println(err)
 	}
