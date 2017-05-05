@@ -1,0 +1,184 @@
+/* ############################# Generic classes ############################# */
+.gf {
+	width:100%;
+}
+.gi {
+	display:inline-block;
+}
+.gp {
+	padding:1em;
+}
+.gb {
+	font-weight:bold;
+}
+.gds {
+	margin-bottom:1em;
+}
+.gds-md {
+	margin-bottom:2em;
+}
+.gds-l {
+	margin-bottom:3em;
+}
+.gds-xl {
+	margin-bottom:4em;
+}
+.gus {
+	margin-top:1em;
+}
+.gus-md {
+	margin-top:2em;
+}
+.gus-l {
+	margin-top:3em;
+}
+.gus-xl {
+	margin-top:4em;
+}
+.gls {
+	margin-left:1em;
+}
+.gls-md {
+	margin-left:2em;
+}
+.gls-l {
+	margin-left:3em;
+}
+.gls-xl {
+	margin-left:4em;
+}
+.grs {
+	margin-right:1em;
+}
+.grs-md {
+	margin-right:2em;
+}
+.grs-l {
+	margin-right:3em;
+}
+.grs-xl {
+	margin-right:4em;
+}
+.gtv {
+	vertical-align:top;
+}
+.gmv {
+	vertical-align:middle;
+}
+.gbf {
+	font-size:120%;
+}
+.gbf-md {
+	font-size:160%;
+}
+.gbf-l {
+	font-size:200%;
+}
+.gbf-xl {
+	font-size:240%;
+}
+.gfx {
+	position:fixed;
+}
+.gnp {
+	padding:0;
+}
+.gcv {
+	margin-top: 50vh; 
+	transform: translateY(-50%); 
+}
+.gc {
+	text-align:center;
+}
+.gl {
+	text-align:left;
+}
+/* ##################################### Responsive stuff ##################################### */
+@media all and (max-width: 767px) {
+  	.center-xs {
+		text-align:center;
+	}
+	.center-xs-fw {
+		width:100%;
+		text-align:center;
+	}
+	.gus-xs {
+		padding-top:1em;
+	}
+	.gus-xs-md {
+		padding-top:2em;
+	}
+	.gds-xs {
+		padding-bottom:1em;
+	}
+	.gds-xs-md {
+		padding-top:1em;
+	}
+}
+@media all and (max-width: 769px) {
+  	.visible-xs {
+		display:block;
+	}
+	.hidden-xs {
+		display:none;
+	}
+}
+@media all and (max-width: 360px) {
+  	.visible-xxs {
+		display:block;
+	}
+	.hidden-xxs {
+		display:none;
+	}
+	.gds-xxs {
+		padding-bottom:1em;
+	}
+	.gus-xxs {
+		padding-top:1em;
+	}
+}
+@media all and (min-width: 361px) {
+  	.visible-xxs {
+		display:none;
+	}
+}
+/* ##################################### Debug classes ##################################### */
+.debug, .gdb {
+	z-index:100;
+	border:1px dashed red;
+	background-color:lime;
+}
+.debug2, .gdb2 {
+	z-index:100;
+	border:1px dotted orange;
+	background-color:yellow;
+}
+/* ############################# Generic news ############################# */
+.gfl {
+	display:flex;
+}
+.gds-s {
+	margin-bottom:0.5em;
+}
+.gfw-w {
+	flex-wrap:wrap;
+}
+.gfw-n {
+	flex-wrap:nowrap;
+}
+.center-content {
+	justify-content:center;
+}
+.center-items {
+	align-items: center;
+}
+.text-center {
+	text-align:center;
+}
+.container {
+	width:1170px;
+}
+/* buttons */
+.btn-fw {
+	width:100%;
+}

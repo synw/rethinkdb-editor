@@ -1,0 +1,11 @@
+<div id="dbselect">
+	<form>
+		<select name="dbs" v-model="currentDb">
+			<option value="" disabled selected>Select a database&nbsp;&nbsp;</option>
+			<option v-for="db in databases" v-bind:value="db.name" v-html="db.name"></option>
+		</select>
+	</form>
+</div>
+<div id="logo">
+	<a href="/" v-html="pageTitle"></a>
+</div>

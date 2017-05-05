@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{{ .Title }}</title>
+	{{ template "head.html" . }}
+</head>
+
+<body>
+	<div id="header">
+		{{ template "header.html" . }}
+	</div>
+	<div id="navbar">
+		{{ template "navbar.html" . }}
+	</div>
+	<div id="content">
+		<h1 style="text-align:center;padding-top:2em">Page not found</h1>
+	</div>
+	<div id="footer">
+		{{ template "head.html" . }}
+	</div>
+</body>
+</html>

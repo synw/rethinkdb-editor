@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{{ .Title }}</title>
+	{{ template "head.html" . }}
+</head>
+
+<body>
+<div id="app">
+	<div style="display:flex;flex-wrap:wrap">
+		<div id="header">
+			{{ template "header.html" }}
+		</div>
+	</div>
+	<div style="display:flex;flex-wrap:wrap;align-items:stretch;">
+		<div id="content" style="flex-grow:1"></div>
+		<div id="sidebar" v-html="sidebar" v-show="sidebar"></div>
+	</div>
+	<div id="footer">
+		{{ template "head.html" }}
+	</div>
+	<script type="text/javascript" src="/static/js/vv.js"></script>
+	<script type="text/javascript" src="/static/vues/app.js"></script>
+</div>
+</body>
+</html>
