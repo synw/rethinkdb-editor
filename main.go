@@ -40,7 +40,6 @@ func main() {
 	// run http server
 	defer httpServer.Stop() 
 	if state.Verbosity > 0 { 
-		fmt.Println("Starting editor ...")
 		defer fmt.Println("Exit") 
 	}
 	httpServer.InitHttpServer(true)

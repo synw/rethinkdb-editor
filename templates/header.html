@@ -1,11 +1,22 @@
 <div id="dbselect">
 	<form>
-		<select name="dbs" v-model="currentDb">
+		<select name="dbs">
 			<option value="" disabled selected>Select a database&nbsp;&nbsp;</option>
-			<option v-for="db in databases" v-bind:value="db.name" v-html="db.name"></option>
+			<option v-for="db in databases" v-bind:value="db.name" v-html="db.name" @click="loadDb(db.name)"></option>
 		</select>
 	</form>
 </div>
 <div id="logo">
-	<a href="/" v-html="pageTitle"></a>
+	<span v-if="currentDb">
+		<a href="/"><i class="fa fa-home"></i></a>
+	</span>
+	<span v-if="currentDb">
+		&nbsp;/&nbsp;&nbsp;<i class="fa fa-database"></i>&nbsp;<a v-html="pageTitle" @click="loadDb(currentDb)"></a>
+	</span>
+	<span v-else>
+		<a href="/" v-html="pageTitle"></a>
+	</span>
+	<span v-if="currentTable">
+		&nbsp;/&nbsp;&nbsp;<i class="fa fa-table"></i>&nbsp;<span v-html="currentTable"></span>
+	</span>
 </div>

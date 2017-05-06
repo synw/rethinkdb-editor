@@ -35,9 +35,11 @@ func InitHttpServer(serve bool) {
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.StripSlashes)
 	// routes
-	r.Get("/", serveRequest)
 	r.Route("/graphql", func(r chi.Router) {
 		r.Get("/*", handleQuery)
+	})
+	r.Route("/", func(r chi.Router) {
+		r.Get("/*", serveRequest)
 	})
 	// init
 	loc := ":8080"

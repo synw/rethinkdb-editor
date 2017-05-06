@@ -35,13 +35,12 @@ div {
 	top:1em;
 	right:1em;
 }
-#logo a, #logo a:visited, #navbar a, #navbar a:visited {
+#logo, #logo a, #logo a:visited, #navbar a, #navbar a:visited {
 	color:white !important;
-	padding-right:0.8em;
 }
 #logo {
-	font-size:180%;
 	padding:0.3em 0 0.3em 1em;
+	font-size:180%;
 }
 #topbar a:hover {
 	color:grey !important;
@@ -81,4 +80,12 @@ div {
 }
 #sidebar button {
 	width:100%;
+}
+.btn-table, .btn-table:active, .btn-table:focus {
+	border:1px solid lightgrey;
+	background-color:transparent;
+}
+.btn-table:hover {
+	border:1px solid lightgrey;
+	background-color:steelblue;
 }

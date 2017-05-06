@@ -104,5 +104,8 @@ var vvMixin = {
 		str: function(el) {
 			return JSON.stringify(el, null, 2)
 		},
+		get: function(node) {
+			return document.getElementById(node)
+		},
     }
 };
