@@ -23,9 +23,9 @@ type httpResponseWriter struct {
 	status *int
 }
 
-var View = template.Must(template.New("index.html").ParseFiles("templates/index.html", "templates/head.html", "templates/header.html", "templates/navbar.html", "templates/footer.html", "templates/routes.js"))
-var V404 = template.Must(template.New("404.html").ParseFiles("templates/404.html", "templates/head.html", "templates/header.html", "templates/navbar.html", "templates/footer.html", "templates/routes.js"))
-var V500 = template.Must(template.New("500.html").ParseFiles("templates/500.html", "templates/head.html", "templates/header.html", "templates/navbar.html", "templates/footer.html", "templates/routes.js"))
+var View = template.Must(template.New("index.html").ParseFiles("templates/index.html", "templates/querybar.html", "templates/head.html", "templates/header.html", "templates/navbar.html", "templates/footer.html", "templates/routes.js"))
+var V404 = template.Must(template.New("404.html").ParseFiles("templates/404.html", "templates/querybar.html", "templates/querybar.html", "templates/head.html", "templates/header.html", "templates/navbar.html", "templates/footer.html", "templates/routes.js"))
+var V500 = template.Must(template.New("500.html").ParseFiles("templates/500.html", "templates/querybar.html", "templates/head.html", "templates/header.html", "templates/navbar.html", "templates/footer.html", "templates/routes.js"))
 
 func InitHttpServer(serve bool) {
 	// routing

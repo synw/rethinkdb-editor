@@ -93,6 +93,9 @@
 .gl {
 	text-align:left;
 }
+.gr {
+	text-align:right;
+}
 /* ##################################### Responsive stuff ##################################### */
 @media all and (max-width: 767px) {
   	.center-xs {
