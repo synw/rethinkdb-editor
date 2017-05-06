@@ -6,7 +6,7 @@ Manage [Rethinkdb](http://rethinkdb.com/) databases and edit content
 Techs
 -----
 
-- Backend: Go stdlib with [Chi router](com/pressly/chi)
+- Backend: Go stdlib with [Chi router](https://github.com/pressly/chi)
 
 - Frontend: [Vue.js](http://vuejs.org/) for data binding, [Axios](https://github.com/mzabriskie/axios) for http operations 
 and [Page.js](https://github.com/visionmedia/page.js) for client-side routing
@@ -37,7 +37,7 @@ Then run and open `http://localhost:8080`
 API
 ---
 
-Example graphql queries:
+Available graphql queries:
 
    ```bash
    # get a list of databases
