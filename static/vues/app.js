@@ -56,10 +56,10 @@ const app = new Vue({
 			if ( this.activeTableBtn ) {
     			this.deactivateTableBtn()
     		} 
-			// TOFIX: not workiing when coming from direct url in browser
+			// TOFIX: not working when coming from direct url in browser
 			try {
 				this.activateTableBtn(table);
-			} catch(err) {}
+			} catch(err) { console.log(err) };
 			this.currentTable = table;
 		},
 		loadSidebar: function(content) {
@@ -84,10 +84,10 @@ const app = new Vue({
 			for (i=0;i<this.tables.length;i++) {
 				var t = this.tables[i].name;
 				var l = "/"+db+"/"+t;
-				btn = '<div id="table-'+t+'" class="btn-sidebar">';
-				btn = btn+'<button id="btn-table-'+t+'" class="btn-table" onclick="page(\''+l+'\')">';
+				btn = '<div id="table-'+t+'">';
+				btn = btn+'<a href="'+l+'"><button id="btn-table-'+t+'" class="btn-default" onclick="page(\''+l+'\')">';
 				//btn = btn+'<i class="fa fa-check fa-lg" style="color:green;"></i>'
-				btn = btn+'<a href="'+l+'">'+this.tables[i].name+'</a></button></div>';
+				btn = btn+''+this.tables[i].name+'</button></a></div>';
 				tb = tb+btn;
 			}
 			return tb
@@ -95,14 +95,19 @@ const app = new Vue({
 		deactivateTableBtn: function() {
 			var btn = this.get("btn-"+this.activeTableBtn);
 			btn.style["background-color"] = "transparent";
+			btn.style["color"] = "darkslategrey";
 			this.activeTableBtn = "";
 		},
 		activateTableBtn: function(table) {
 			this.activeTableBtn = "table-"+table;
 			var btn = this.get("btn-"+this.activeTableBtn);
 			btn.style["background-color"] = "#f0ead6";
-			btn.style["color"] = "white";
+			btn.style["color"] = "#388E8E";
 		},
+		countTt: function() {
+			var s = "Count documents in table "+this.currentTable;
+			return s
+		}
 	},
 });
 

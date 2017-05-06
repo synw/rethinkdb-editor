@@ -85,11 +85,13 @@ div {
 #sidebar button {
 	width:100%;
 }
-.btn-table, .btn-table:active, .btn-table:focus {
+.btn-default, .btn-default:active, .btn-default:focus {
 	border:1px solid lightgrey;
 	background-color:transparent;
+	color:darkslategrey;
 }
-.btn-table:hover {
+.btn-default:hover {
 	border:1px solid lightgrey;
 	background-color:steelblue;
+	color:white;
 }

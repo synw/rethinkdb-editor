@@ -2,7 +2,7 @@
 <fieldset class="flex one gr">
 	<label>
 		<span>Limit</span>&nbsp;<input type="text" size="3" placeholder="100" style="max-width:4em">
-		<button onclick="count_all()">Count</button>
+		<button class="btn-default" v-bind:data-tooltip="countTt()" onclick="count_all()">Count</button>
 		<button class="success" onclick="run_q()">Run</button>
 	</label>
 </fieldset>
