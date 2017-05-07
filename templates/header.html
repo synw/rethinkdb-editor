@@ -2,21 +2,21 @@
 	<form>
 		<select name="dbs">
 			<option value="" disabled selected>Select a database&nbsp;&nbsp;</option>
-			<option v-for="db in databases" v-bind:value="db.name" v-html="db.name" @click="loadDb(db.name)"></option>
+			<option v-for="db in store.getters.dbs" v-bind:value="db.name" v-html="db.name" @click="loadDb(db.name)"></option>
 		</select>
 	</form>
 </div>
 <div id="logo">
-	<span v-if="currentDb">
+	<span v-if="store.getters.currentDb">
 		<a href="/"><i class="fa fa-home"></i></a>
 	</span>
-	<span v-if="currentDb">
-		&nbsp;/&nbsp;&nbsp;<i class="fa fa-database"></i>&nbsp;<a v-html="pageTitle" @click="loadDb(currentDb)"></a>
+	<span v-if="store.getters.currentDb">
+		&nbsp;/&nbsp;&nbsp;<i class="fa fa-database"></i>&nbsp;<a v-html="store.getters.pageTitle" @click="loadDb(store.getters.currentDb)"></a>
 	</span>
 	<span v-else>
-		<a href="/" v-html="pageTitle"></a>
+		<a href="/" v-html="store.getters.pageTitle"></a>
 	</span>
-	<span v-if="currentTable">
-		&nbsp;/&nbsp;&nbsp;<i class="fa fa-table"></i>&nbsp;<span v-html="currentTable"></span>
+	<span v-if="store.getters.currentTable">
+		&nbsp;/&nbsp;&nbsp;<i class="fa fa-table"></i>&nbsp;<span v-html="store.getters.currentTable"></span>
 	</span>
 </div>

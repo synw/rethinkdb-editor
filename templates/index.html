@@ -9,19 +9,26 @@
 <div id="app">
 	<div style="display:flex;flex-wrap:wrap">
 		<div id="header">
-			{{ template "header.html" }}
+			{{ template "header.html" . }}
 		</div>
 	</div>
 	<div style="display:flex;flex-wrap:wrap;align-items:stretch;">
 		<div id="content" style="flex-grow:1">
-			<div id="querybar" v-if="currentTable">
+			<div id="querybar" v-if="store.getters.currentTable">
 				{{ template "querybar.html" . }}
 			</div>
 		</div>
-		<div id="sidebar" v-html="sidebar" v-show="sidebar"></div>
+		<div id="sidebar">
+			<div v-for="table in store.getters.tables" v-show="store.getters.tables">
+				<a v-bind:href="getTableUrl(table.name)">
+					<button v-bind:id="getTableId(table.name)" class="btn-default" v-html="table.name">
+					</button>
+				</a>
+			</div>
+		</div>
 	</div>
 	<div id="footer">
-		{{ template "head.html" }}
+		
 	</div>
 	<script type="text/javascript" src="/static/js/vv.js"></script>
 	<script type="text/javascript" src="/static/vues/app.js"></script>

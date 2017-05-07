@@ -1,4 +1,5 @@
-const vvDebug = false;
+const vvDebug = true;
+
 var vvMixin = {
     data: function() {
         return {
@@ -49,30 +50,6 @@ var vvMixin = {
 				return true
 			}
 			return false
-		},
-		activate: function(args) {
-			if (vvDebug === true) { 
-				console.log("ACTIVATE "+args);
-				console.log("# active: "+this.active);
-			};
-			for (i=0;i<args.length;i++) {
-				this.active.push(args[i]);
-			}
-			if (vvDebug === true) { console.log("--> active: "+this.active+"\n ****** activated *****\n")};
-		},
-		deactivate: function(args) {
-			if (vvDebug === true) { 
-				console.log("#### DEACTIVATE "+args);
-				console.log("# active: "+this.active);
-			};
-			for (i=0;i<args.length;i++) {
-				if (this.isActive(args[i])) {
-					if (vvDebug === true) { console.log("[x] deactivating "+args[i]) };
-					var index = this.active.indexOf(args[i]);
-					this.active.splice(index, 1);
-				}
-			}
-			if (vvDebug === true) { console.log("--> active: "+this.active+"\n #### deactivated\n")};
 		},
 		loadData: function(resturl, action, error) {
 			axios.get(resturl).then(function (response) {
