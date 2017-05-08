@@ -34,18 +34,4 @@ Set your database location and credentials:
 
 Then run and open `http://localhost:8080`
 
-API
----
-
-Available graphql queries:
-
-   ```bash
-   # get a list of databases
-   curl -g 'http://localhost:8080/graphql?query={dbs{name}}'
-   
-   # get a list of tables in a database
-   curl -g 'http://localhost:8080/graphql?query={tables(db:"rethinkdb"){name}}'
-   ```
-
-
 *Note*: this app is still under heavy development
