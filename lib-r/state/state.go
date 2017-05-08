@@ -4,29 +4,24 @@ import (
 	"net/http"
 	"github.com/synw/terr"
 	"github.com/synw/rethinkdb-editor/lib-r/conf"
+	"github.com/synw/goregraph/lib-r/types"
 )
 
-
-var Addr string
-var User string
-var Pwd string
+var Conf *types.Conf
 var Verbosity int
 var HttpServer *http.Server
 var Dbs []string
 var Db string
 var Table string
 
-func InitState(name string, verbosity int) *terr.Trace {
+func InitState(dev bool, verbosity int) *terr.Trace {
 	// options
 	Verbosity = verbosity
 	// config
-	cf, tr := conf.GetConf(name)
+	cf, tr := conf.GetConf(dev, verbosity)
 	if tr != nil {
 		return tr
 	}
-	// db credentials
-	Addr = cf["addr"].(string)
-	User = cf["user"].(string)
-	Pwd = cf["password"].(string)
+	Conf  = cf
 	return nil
 }

@@ -12,9 +12,9 @@ import (
 	"github.com/pressly/chi"
 	"github.com/pressly/chi/middleware"
 	"github.com/synw/terr"
-	"github.com/synw/rethinkdb-editor/lib-r/schema"
+	"github.com/synw/goregraph/db"
 	"github.com/synw/rethinkdb-editor/lib-r/state"
-	"github.com/synw/rethinkdb-editor/lib-r/datatypes"
+	"github.com/synw/rethinkdb-editor/lib-r/types"
 )
 
 
@@ -85,7 +85,7 @@ func Stop() *terr.Trace {
 
 func handleQuery(response http.ResponseWriter, request *http.Request) {
 	q := request.URL.Query()["query"][0]
-	result, tr := schema.RunQuery(q, schema.Schem)
+	result, tr := db.RunQuery(q)
 	if tr != nil {
 		fmt.Println(tr.Formatc())
 	}

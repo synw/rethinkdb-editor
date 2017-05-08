@@ -3,10 +3,9 @@ package main
 import (
 	"fmt"
 	"flag"
-	"github.com/synw/terr"
+	"github.com/synw/goregraph/db"
 	"github.com/synw/rethinkdb-editor/lib-r/state"
 	"github.com/synw/rethinkdb-editor/lib-r/httpServer"
-	"github.com/synw/rethinkdb-editor/lib-r/db"
 )
 
 
@@ -15,23 +14,19 @@ var verbosity = flag.Int("v", 1, "Verbosity")
 
 func main() {
 	flag.Parse()
-	name := "normal"
-	if *dev_mode == true {
-		name = "dev"
-	}
 	// init state
-	tr := state.InitState(name, *verbosity)
+	tr := state.InitState(*dev_mode, *verbosity)
 	if tr != nil {
 		fmt.Println(tr.Formatc())
 	}
 	// init db
-	tr = db.InitDb()
-	if tr != nil {
-		terr.Fatal("main", tr)
+	err := db.Init(state.Conf)
+	if err != nil {
+		fmt.Println(err)
 	}
 	dbs, tr := db.GetDbs()
 	if tr != nil {
-		terr.Fatal("main", tr)
+		tr.Formatc()
 	}
 	state.Dbs = dbs
 	if state.Verbosity > 0 {
@@ -43,4 +38,5 @@ func main() {
 		defer fmt.Println("Exit") 
 	}
 	httpServer.InitHttpServer(true)
+	select{}
 }
