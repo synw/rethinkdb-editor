@@ -11,7 +11,7 @@ Techs
 - Frontend: [Vue.js](http://vuejs.org/) for data binding, [Axios](https://github.com/mzabriskie/axios) for http operations 
 and [Page.js](https://github.com/visionmedia/page.js) for client-side routing
 
-- API: Graphql endpoint
+- API: Graphql endpoint with [Goregraph](https://github.com/synw/goregraph)
 
 Install and run
 ---------------
