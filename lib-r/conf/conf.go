@@ -36,6 +36,7 @@ func GetConf(dev bool, verbosity int) (*types.Conf, *terr.Trace) {
 	addr := viper.Get("addr").(string)
 	user := viper.Get("user").(string)
 	pwd := viper.Get("password").(string)
-	endconf := &types.Conf{addr, user, pwd, dev, verbosity}
+	cors := []string{addr}
+	endconf := &types.Conf{addr, user, pwd, dev, verbosity, cors}
 	return endconf, nil
 }

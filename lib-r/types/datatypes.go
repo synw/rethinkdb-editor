@@ -1,4 +1,4 @@
-package datatypes
+package types
 
 
 type Page struct {

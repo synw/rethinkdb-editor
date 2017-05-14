@@ -8,11 +8,12 @@ import (
 	"context"
 	"html/template"
 	"path/filepath"
-	"encoding/json"
+	//"encoding/json"
 	"github.com/pressly/chi"
 	"github.com/pressly/chi/middleware"
 	"github.com/synw/terr"
-	"github.com/synw/goregraph/db"
+	//"github.com/synw/goregraph/db"
+	g "github.com/synw/goregraph/lib-r/httpServer"
 	"github.com/synw/rethinkdb-editor/lib-r/state"
 	"github.com/synw/rethinkdb-editor/lib-r/types"
 )
@@ -36,13 +37,13 @@ func InitHttpServer(serve bool) {
 	r.Use(middleware.StripSlashes)
 	// routes
 	r.Route("/graphql", func(r chi.Router) {
-		r.Get("/*", handleQuery)
+		r.Get("/*", g.HandleQuery)
 	})
 	r.Route("/", func(r chi.Router) {
 		r.Get("/*", serveRequest)
 	})
 	// init
-	loc := ":8080"
+	loc := ":8081"
 	httpServer := &http.Server{
 		Addr: loc,
 	    ReadTimeout: 5 * time.Second,
@@ -57,7 +58,7 @@ func InitHttpServer(serve bool) {
 	// run
 	if serve == true {
 		if state.Verbosity > 0 {
-			fmt.Println("Starting http server ...")
+			fmt.Println("Starting http server at :8081 ...")
 		}
 		Run()
 	}
@@ -82,8 +83,8 @@ func Stop() *terr.Trace {
 }
 
 // internal methods
-
-func handleQuery(response http.ResponseWriter, request *http.Request) {
+/*
+func HandleQuery(response http.ResponseWriter, request *http.Request) {
 	q := request.URL.Query()["query"][0]
 	result, tr := db.RunQuery(q)
 	if tr != nil {
@@ -95,7 +96,7 @@ func handleQuery(response http.ResponseWriter, request *http.Request) {
 	}
 	response = headers(response)
 	fmt.Fprintf(response, "%s\n", json_bytes)
-}
+}*/
 
 func headers(response http.ResponseWriter) http.ResponseWriter {
 	response.Header().Set("Content-Type", "application/json")
@@ -105,26 +106,26 @@ func headers(response http.ResponseWriter) http.ResponseWriter {
 func serveRequest(response http.ResponseWriter, request *http.Request) {
 	url := request.URL.Path
 	status := http.StatusOK
-    page := &datatypes.Page{Url: url, Title: "Rethinkdb editor", Content: ""}
+    page := &types.Page{Url: url, Title: "Rethinkdb editor", Content: ""}
     response = httpResponseWriter{response, &status}
     renderTemplate(response, page)
 }
 
-func renderTemplate(response http.ResponseWriter, page *datatypes.Page) {
+func renderTemplate(response http.ResponseWriter, page *types.Page) {
     err := View.Execute(response, page)
     if err != nil {
         http.Error(response, err.Error(), http.StatusInternalServerError)
     }
 }
 
-func render404(response http.ResponseWriter, page *datatypes.Page) {
+func render404(response http.ResponseWriter, page *types.Page) {
 	err := V404.Execute(response, page)
     if err != nil {
         http.Error(response, err.Error(), http.StatusInternalServerError)
     }
 }
     
-func render500(response http.ResponseWriter, page *datatypes.Page) {
+func render500(response http.ResponseWriter, page *types.Page) {
 	err := V500.Execute(response, page)
     if err != nil {
         http.Error(response, err.Error(), http.StatusInternalServerError)
