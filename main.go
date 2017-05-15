@@ -29,9 +29,6 @@ func main() {
 		tr.Formatc()
 	}
 	state.Dbs = dbs
-	if state.Verbosity > 0 {
-		fmt.Println("Database is ready")
-	}
 	// run http server
 	defer httpServer.Stop() 
 	if state.Verbosity > 0 { 

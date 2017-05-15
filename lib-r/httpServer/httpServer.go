@@ -43,7 +43,7 @@ func InitHttpServer(serve bool) {
 		r.Get("/*", serveRequest)
 	})
 	// init
-	loc := ":8081"
+	loc := ":8080"
 	httpServer := &http.Server{
 		Addr: loc,
 	    ReadTimeout: 5 * time.Second,
@@ -58,7 +58,7 @@ func InitHttpServer(serve bool) {
 	// run
 	if serve == true {
 		if state.Verbosity > 0 {
-			fmt.Println("Starting http server at :8081 ...")
+			fmt.Println("Http server is up at "+loc+"...")
 		}
 		Run()
 	}

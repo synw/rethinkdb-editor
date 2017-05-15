@@ -1,4 +1,4 @@
-const vvDebug = true;
+var vvDebug = false;
 
 var vvMixin = {
     data: function() {
@@ -8,48 +8,60 @@ var vvMixin = {
     },
     methods: {
     	flush: function(preserve) {
-			if (vvDebug === true) {console.log("FLUSH"+"\n# active: "+this.active, this.active.length)};
-			var act = [];
-			for (i=0;i<this.active.length;i++) {
-				if (vvDebug === true) {if (preserve) {console.log("Preserve: "+this.active[i]+" / "+preserve)}};
-				if (this.active[i] != preserve) {
-					var t = typeOf(this.active[i]);
-					if (isNaN(t)) {
-						if (vvDebug === true) { console.log("NaN value "+this.active[i])};
-						continue
-					}
+			if (vvDebug === true) {console.log("FLUSH"+"\n# active: "+store.getters.active, store.getters.active.length)};
+			//var act = [];
+			for (i=0;i<store.getters.active.length;i++) {
+				if (vvDebug === true) {if (preserve) {console.log("Preserve: "+store.getters.active[i]+" / "+preserve)}};
+				if (store.getters.active[i] != preserve) {
+					var t = typeOf(store.getters.active[i]);
 					if (t === "string") {
-						if (vvDebug === true) { console.log(+ " [x] Flushing "+this.active[i]+" (string)")};
-						this.active[i] = "";
+						if (vvDebug === true) { console.log(" [x] Flushing "+store.getters.active[i]+" (string)")};
+						store.getters.active[i] = "";
 					} else if (t === "array") {
-						if (vvDebug === true) { console.log(+ " [x] Flushing "+this.active[i]+" (array)")};
-						this.active[i] = [];
+						if (vvDebug === true) { console.log(" [x] Flushing "+store.getters.active[i]+" (array)")};
+						store.getters.active[i] = [];
 					} else if (t === "object") {
-						if (vvDebug === true) { console.log(+ " [x] Flushing "+this.active[i]+" (object)")};
-						this.active[i] = {}
+						if (vvDebug === true) { console.log(" [x] Flushing "+store.getters.active[i]+" (object)")};
+						store.getters.active[i] = {}
 					} else if (t === "boolean") {
-						if (vvDebug === true) { console.log(+ " [x] Flushing "+this.active[i]+" (boolean)")};
-						this.active[i] = false
+						if (vvDebug === true) { console.log(" [x] Flushing "+store.getters.active[i]+" (boolean)")};
+						store.getters.active[i] = false
 					} else if (t === "number") {
-						if (vvDebug === true) { console.log(+ " [x] Flushing "+this.active[i]+" (number)")};
-						this.active[i] = 0
+						if (vvDebug === true) { console.log(" [x] Flushing "+store.getters.active[i]+" (number)")};
+						store.getters.active[i] = 0
 					} else {
-						if (vvDebug === true) { console.log("Type not found "+this.active[i])};
+						if (vvDebug === true) { console.log("Type not found "+store.getters.active[i])};
 						continue
 					}
-					act.push(this.active[i]);
+					//act.push(store.getters.active[i]);
 				} else {
-					if (vvDebug === true) { console.log("Preserving "+this.active[i])};
+					if (vvDebug === true) { console.log("Preserving "+store.getters.active[i])};
 				}
 			}
-			this.active = act;
-			if (vvDebug === true) { console.log("--> active: "+this.active+"\n ****** flushed *****\n") };
+			//this.activate(act);
+			//if (vvDebug === true) { console.log("--> active: "+store.getters.active+"\n ****** flushed *****\n") };
 		},
 		isActive: function(item) {
-			if (this.active.indexOf(item) > -1) {
+			if (store.getters.active.indexOf(item) > -1) {
 				return true
 			}
 			return false
+		},
+		activate: function(args) {
+			if (vvDebug === true) { 
+				console.log("ACTIVATE "+args);
+				console.log("# active: "+store.getters.active);
+			};
+			store.dispatch("activate", args)
+			if (vvDebug === true) { console.log("--> active: "+store.getters.active+"\n ****** activated *****\n")};
+		},
+		deactivate: function(args) {
+			if (vvDebug === true) { 
+				console.log("#### DEACTIVATE "+args);
+				console.log("# active: "+store.getters.active);
+			};
+			store.dispatch("deactivate", args)
+			if (vvDebug === true) { console.log("--> active: "+store.getters.active+"\n #### deactivated\n")};
 		},
 		loadData: function(resturl, action, error) {
 			axios.get(resturl).then(function (response) {
@@ -72,6 +84,19 @@ var vvMixin = {
 			}).catch(function (err) {
 				error(err);
 			});
+		},
+		serializeForm: function(form) {
+			var obj = {};
+			var elements = form.querySelectorAll( "input, select, textarea" );
+			for( var i = 0; i < elements.length; ++i ) {
+				var element = elements[i];
+				var name = element.name;
+				var value = element.value;
+				if( name ) {
+					obj[ name ] = value;
+				}
+			}
+			return obj;
 		},
 		query: function(q) {
 			var q = encodeURIComponent(q);

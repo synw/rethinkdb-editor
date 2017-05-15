@@ -8,10 +8,7 @@
 </div>
 <div id="logo">
 	<span v-if="store.getters.currentDb">
-		<a href="/"><i class="fa fa-home"></i></a>
-	</span>
-	<span v-if="store.getters.currentDb">
-		&nbsp;/&nbsp;&nbsp;<i class="fa fa-database"></i>&nbsp;<a v-html="store.getters.pageTitle" @click="loadDb(store.getters.currentDb)"></a>
+		<a href="/">/</a>&nbsp;&nbsp;<i class="fa fa-database"></i>&nbsp;<a v-html="store.getters.pageTitle" @click="loadDb(store.getters.currentDb)"></a>
 	</span>
 	<span v-else>
 		<a href="/" v-html="store.getters.pageTitle"></a>
