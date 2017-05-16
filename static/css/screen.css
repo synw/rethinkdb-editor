@@ -23,6 +23,10 @@ div {
 	box-sizing: border-box;
 	vertical-align:top;
 }
+.gdb {
+	background-color:lime;
+	boder: 1px solid dashed;
+}
 /* ##################################### Skeleton ##################################### */
 #header {
 	min-height:50px;
@@ -94,4 +98,49 @@ div {
 	border:1px solid lightgrey;
 	background-color:steelblue;
 	color:white;
+}
+.pull-right {
+	float:right;
+}
+.pull-left {
+	float:left;
+}
+/* ##################################### editor ##################################### */
+.label {
+	margin:0.2em;
+}
+.result_cell {
+	border-bottom:1px solid lightgrey;
+	margin:0.5em 0 0.5em 0;
+	padding-bottom:0.8em;
+}
+#results_title {
+	position:relative;
+	top:-0.5em;
+}
+.blue {
+	color:steelblue;
+}
+.light {
+	color:grey;
+	opacity:0.8;
+}
+.lighter {
+	color:grey;
+	opacity:0.5;
+}
+.big {
+	font-size:150%;
+}
+.small {
+	font-size:85%;
+}
+.object {
+	color:firebrick;
+}
+.array {
+	color:orange;
+}
+.number {
+	color:green;
 }

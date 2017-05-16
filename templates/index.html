@@ -12,13 +12,17 @@
 			{{ template "header.html" . }}
 		</div>
 	</div>
-	<div style="display:flex;flex-wrap:wrap;align-items:stretch;">
-		<div id="content" style="flex-grow:1">
-			<div id="querybar" v-if="store.getters.currentTable">
+	<div id="content" class="flex two grow">
+		<div id="documents">
+			<div id="querybar" class="flex" v-if="store.getters.currentTable">
 				{{ template "querybar.html" . }}
 			</div>
+			<div v-for="d in docs">
+				<div id="d.id" class="result_cell" v-show="isActive('docs')" v-html="getDoc(d)">
+				</div>
+			</div>
 		</div>
-		<div id="sidebar">
+		<div id="sidebar" style="max-width:20%">
 			<div v-for="table in store.getters.tables" v-show="store.getters.tables">
 				<a v-bind:href="getTableUrl(table.name)">
 					<button v-bind:id="getTableId(table.name)" class="btn-default" v-html="table.name">
@@ -31,6 +35,7 @@
 		
 	</div>
 	<script type="text/javascript" src="/static/js/vv.js"></script>
+	<script type="text/javascript" src="/static/vues/jsonedit.js"></script>
 	<script type="text/javascript" src="/static/vues/store.js"></script>
 	<script type="text/javascript" src="/static/vues/app.js"></script>
 </div>

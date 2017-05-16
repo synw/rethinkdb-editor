@@ -1,7 +1,7 @@
 const app = new Vue({
 	delimiters: ['${', '}'],
 	el: '#app',
-	mixins: [vvMixin],
+	mixins: [vvMixin, jsoneditMixin],
 	data () {
         return {
         	
@@ -86,15 +86,15 @@ const app = new Vue({
     		}
     		function action(data) {
     			var arr = data.getAll;
-    			console.log("FETCHED DATA", arr);
-    			var res = ""
+    			//console.log("FETCHED DATA", arr);
+    			var res = "";
+    			app.activate(["docs"]);
     			for (i=0;i<arr.length;i++) {
     				var el = arr[i];
-    				console.log("DATa", el);
+    				//console.log("DATa", el);
     				var obj = JSON.parse(el.data);
     				console.log("OBJ", obj);
-    				//res = res+JSON.parse(d.data);
-    				//console.log("RES", res);
+    				app.docs.push(obj);
     			}
     		}
     		this.loadData(url, action, error);
