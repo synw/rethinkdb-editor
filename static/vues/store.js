@@ -5,6 +5,7 @@ const store = new Vuex.Store({
     	tables: [],
     	currentDb: "",
     	currentTable: "",
+    	//docs: [],
     	pageTitle: "Rethinkdb editor",
 	},
 	mutations: {
@@ -36,44 +37,12 @@ const store = new Vuex.Store({
 		setPageTitle(state, title) {
 			state.pageTitle = title;
 		},
-		activateTableBtn(state, table, oldtable) {
-			var btn = app.get("btn-table-"+table);
-			//console.log("ACTIVATE", "btn-table-"+table, oldtable);
-			
-			btn.style["background-color"] = "#f0ead6";
-			btn.style["color"] = "#388E8E";
-		},
-		deactivateTableBtn(state, oldtable) {
- 			//console.log("************* DEACT btns for", oldtable);
- 			//if (!oldtable) { console.log("no table\n*****");return };
-			var id = "sidebar";
-			var elem = document.getElementById(id)||null;
-			//if (elem === null) { console.log("elem null", id);return };
-			var nodes = elem.childNodes;
-			for (i=0;i<nodes.length;i++) {
-				var a = nodes[i];
-				var btn = a.childNodes[0];
-				//console.log("NODE -> ", btn);
-				
-				btn.style["background-color"] = "transparent";
-				btn.style["color"] = "darkslategrey";
-			}
-			if (oldtable) {
-				var b = "btn-table-"+oldtable;
-				//console.log("DEACTIVATE OLD TABLE", b);
-				try {
-					var btn = app.get(b);
-					//console.log("DEACT", b);
-					btn.style["background-color"] = "transparent";
-					btn.style["color"] = "darkslategrey";
-				} catch(err) { 
-					//console.log("deactivate table btn", err) 
-				}
-			}
-		},
 		fillSidebar(state, content) {
 			state.sidebar = content;
 		},
+		/*setDocs(state, docs) {
+			state.docs = docs;
+		},*/
 	},
 	actions: {
 		activate(context, elems) {
@@ -100,31 +69,18 @@ const store = new Vuex.Store({
 		fillSidebar(context, content) {
 			context.commit("fillSidebar", content);
 		},
-		activateTableBtn(context, payload) {
-			var oldtable = payload.oldtable;
-			var table = payload.table;
-			context.commit("deactivateTableBtn", table);
-			if (oldtable) {
-				context.commit("activateTableBtn", table);
-			} else {
-				//console.log("delayed");
-				setTimeout( function() {
-					context.commit("activateTableBtn", table);
-				}, 500);
-			}
-		},
-		deactivateTableBtn(context, oldtable) {
-			context.commit("deactivateTableBtn", oldtable);
-		},
+		/*setDocs(context, content) {
+			context.commit("getDocs", docs);
+		},*/
 	},
 	getters: {
 		active: function(state) { return state.active },
 		dbs: function(state) { return state.dbs },
     	tables: function(state) { return state.tables },
+    	//docs: function(state) { return state.docs },
     	currentDb: function(state) { return state.currentDb },
     	currentTable: function(state) { return state.currentTable },
     	pageTitle: function(state) { return state.pageTitle },
     	sidebar: function(state) { return state.sidebar },
-    	activeTableBtn: function(state) { return state.activeTableBtn },
 	},
 });

@@ -17,8 +17,8 @@
 			<div id="querybar" class="flex" v-if="store.getters.currentTable">
 				{{ template "querybar.html" . }}
 			</div>
-			<div v-for="d in docs">
-				<div id="d.id" class="result_cell" v-show="isActive('docs')" v-html="getDoc(d)">
+			<div v-for="(d, i) in docs">${i} / ${d}
+				<div v-bind-id="i" class="result_cell" v-show="isActive('docs')" v-html="formatDoc(i)">
 				</div>
 			</div>
 		</div>

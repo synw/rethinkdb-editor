@@ -12,7 +12,6 @@ const app = new Vue({
 			url = this.query('{dbs{name}}');
 			function error(err) {
 				console.log(err)
-				//console.log("ERROR loadDbs: "+err)
 			}
 			function action(data) {
 				store.dispatch("setDbs", data["dbs"]);
@@ -25,7 +24,6 @@ const app = new Vue({
 			var url = this.query(q);
 			function error(err) {
 				console.log(err)
-				//console.log("ERROR loadTables: "+err)
 			}
 			function action(data) {
 				store.dispatch("setTables", data["tables"]);
@@ -33,11 +31,8 @@ const app = new Vue({
 			this.loadData(url, action, error);
 		},
 		useDb: function(newdb) {
-			//console.log("USE DB", newdb, 'TABLE:', this.currentTable);
 			store.dispatch("setCurrentDb", newdb);
 			store.dispatch("setPageTitle", store.getters.currentDb);
-			//console.log("useDb / table", store.getters.currentTable);
-			store.dispatch("deactivateTableBtn", store.getters.currentTable);
 			store.dispatch("setCurrentTable", "");
 			this.loadTables(store.getters.currentDb);
 			if ( this.isActive("currentDb")  === false ) {
@@ -48,7 +43,6 @@ const app = new Vue({
 			}
 		},
 		useTable: function(db, table, oldtable) {
-			//console.log("USE TABLE", table, "OLD TABLE", oldtable);
 			if ( this.isActive("currentDb") === false ) {
 				this.useDb(db);
 				store.dispatch("setCurrentDb", db)
@@ -59,7 +53,6 @@ const app = new Vue({
 			store.dispatch("setCurrentTable", table);
 			store.dispatch("activate", ["currentTable"]);
 			var payload = {"table": table, "oldtable": oldtable};
-			store.dispatch("activateTableBtn", payload);
 		},
     	loadDb: function(db) {
     		var url = "/"+db;
@@ -85,17 +78,20 @@ const app = new Vue({
     			console.log("ERROR", err)
     		}
     		function action(data) {
-    			var arr = data.getAll;
+    			var arr = data.docs;
     			//console.log("FETCHED DATA", arr);
     			var res = "";
     			app.activate(["docs"]);
+    			var docs = [];
     			for (i=0;i<arr.length;i++) {
     				var el = arr[i];
     				//console.log("DATa", el);
     				var obj = JSON.parse(el.data);
     				console.log("OBJ", obj);
-    				app.docs.push(obj);
+    				Object.freeze(obj);
+    				docs.push(obj);
     			}
+    			app.docs = docs;
     		}
     		this.loadData(url, action, error);
     	},
@@ -107,10 +103,13 @@ const app = new Vue({
     			if (data.limit) {
     				limit = data.limit
     			}
-    			var q = 'getAll(db:"'+store.getters.currentDb+'",table:"'+store.getters.currentTable+'"';
+    			var q = 'docs(db:"'+store.getters.currentDb+'",table:"'+store.getters.currentTable+'"';
     			var stropts = ""
     			if (limit !== 0) {
     				stropts = stropts+',limit:'+limit;
+    			}
+    			if (data.pluck) {
+    				stropts = stropts+',pluck:"'+data.pluck+'"';
     			}
      			q = q+stropts+'){data}';
      			console.log(q);
