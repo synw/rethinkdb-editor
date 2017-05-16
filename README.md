@@ -47,6 +47,7 @@ Then run and open `http://localhost:8080`
 - [ ] Add option to use Codemirror to edit some fields
 - [ ] Backend mutations to save document
 - [ ] Users and permissions management
+- [ ] Alternate simplified ui for editors with limited rights
 - [ ] Display more info in ui about query results
 - [ ] Delete documents
 - [ ] Create databases and tables
