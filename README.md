@@ -35,3 +35,19 @@ Set your database location and credentials:
 Then run and open `http://localhost:8080`
 
 *Note*: this app is still under heavy development
+
+## Roadmap
+
+- [x] Backend: translate graphql queries to reql queries
+- [x] Backend: graphql server
+- [x] Explore databases and tables
+- [x] Fetch arbitrary documents from the database
+- [ ] Format documents and detect types
+- [ ] Basic inline edit features
+- [ ] Add option to use Codemirror to edit some fields
+- [ ] Backend mutations to save document
+- [ ] Users and permissions management
+- [ ] Display more info in ui about query results
+- [ ] Delete documents
+- [ ] Create databases and tables
+- [ ] Start with the collaborative editor feature
