@@ -51,4 +51,5 @@ Then run and open `http://localhost:8080`
 - [ ] Display more info in ui about query results
 - [ ] Delete documents
 - [ ] Create databases and tables
+- [ ] Table level imutability option
 - [ ] Start with the collaborative editor feature
