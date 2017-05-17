@@ -13,16 +13,19 @@ var jsoneditMixin = {
     	jsonDoc: function(doc) {
     		return "<pre>"+this.str(doc)+"</pre>";
     	},
-	    formatDoc: function(oIndex, sIndent) {
-	    	var oData = this.docs[oIndex];
+	    formatDoc: function(oIndex, data, sIndent) {
+	    	var oData = {}
+	    	if (oIndex > -1) {
+	    		oData = this.docs[oIndex];
+	    	} else {
+	    		oData = data;
+	    	}
 	    	if (sIndent === undefined) { sIdent = 2 };
 	        if (arguments.length < 2) {
 	            var sIndent = "<br />";
 	        }
 	        var sIndentStyle = '<span style="margin-left:2em"></span>';
 	        var sDataType = this.getType(oData);
-	        console.log("TYPE", sDataType);
-	
 	        // open object
 	        if (sDataType == "array") {
 	            if (oData.length == 0) {
@@ -30,32 +33,21 @@ var jsoneditMixin = {
 	            }
 	            var sHTML = "";
 	        } else {
-	        	console.log("OBJ", oData);
 	            var iCount = 0;
 	            var keys = Object.keys(oData);
 	            for (i=0;i<keys.length;i++) {
-	            	console.log(iCount, keys[i]);
 	                iCount++;
-	                return;
 	            };
-	            if (iCount == 0) { // object is empty
+	            if (iCount == 0) {
 	                return "{}";
 	            }
 	            var sHTML = "";
 	        }
 	        // loop through items
-	        var iCount = 0;
 	        for (sKey in oData) {
-	        	console.log("K", sKey, "V", oData[sKey]);
-	        	
-	        	sVakue = oData[sKey];
-	        	console.log(sKey+' , '+vValue);
-	        	
+	        	var vValue = oData[sKey];	
 	        	var type = this.getType(vValue);
 	        	var keytype = this.getType(sKey);
-	            if (iCount > 0) {
-	                sHTML += ",";
-	            }
 	            sHTML += sIndent+ sIndentStyle;
 	            if (sDataType == "array") {
 	            	if ( type == "object") {
@@ -84,7 +76,7 @@ var jsoneditMixin = {
 	            switch (type) {
 	                case "array":
 	                case "object":
-	                    sHTML += this.formatDoc(vValue, (sIndent + sIndentStyle));
+	                    sHTML += this.formatDoc(-1, vValue, (sIndent + sIndentStyle));
 	                    break;
 	                case "boolean":
 	                case "number":
@@ -99,7 +91,6 @@ var jsoneditMixin = {
 	                default:
 	                    sHTML += ("TYPEOF: " + typeof(vValue));
 	            }
-	            iCount++;
 	        };
 	        return sHTML;
 	    },
@@ -112,6 +103,9 @@ var jsoneditMixin = {
 	    		return "object";
 	    	}
 		return typeof(v);
+		},
+		getDocNum: function(i) {
+			return i+1
 		},
     }
 }

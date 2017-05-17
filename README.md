@@ -42,7 +42,7 @@ Then run and open `http://localhost:8080`
 - [x] Backend: graphql server
 - [x] Explore databases and tables
 - [x] Fetch arbitrary documents from the database
-- [ ] Format documents and detect types
+- [x] Format documents and detect types
 - [ ] Basic inline edit features
 - [ ] Add option to use Codemirror to edit some fields
 - [ ] Backend mutations to save document
@@ -53,3 +53,8 @@ Then run and open `http://localhost:8080`
 - [ ] Create databases and tables
 - [ ] Table level imutability option
 - [ ] Start with the collaborative editor feature
+
+## Todo
+
+- [ ] Nested pluck query support
+- [ ] Detect date type and use date picker widget

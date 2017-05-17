@@ -85,9 +85,8 @@ const app = new Vue({
     			var docs = [];
     			for (i=0;i<arr.length;i++) {
     				var el = arr[i];
-    				//console.log("DATa", el);
     				var obj = JSON.parse(el.data);
-    				console.log("OBJ", obj);
+    				//console.log("OBJ", obj);
     				Object.freeze(obj);
     				docs.push(obj);
     			}
