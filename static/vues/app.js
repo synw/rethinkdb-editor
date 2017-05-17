@@ -81,7 +81,6 @@ const app = new Vue({
     			var arr = data.docs;
     			//console.log("FETCHED DATA", arr);
     			var res = "";
-    			app.activate(["docs"]);
     			var docs = [];
     			for (i=0;i<arr.length;i++) {
     				var el = arr[i];
@@ -90,11 +89,14 @@ const app = new Vue({
     				Object.freeze(obj);
     				docs.push(obj);
     			}
+    			app.deactivate(["spinner"]);
+    			app.activate(["docs"]);
     			app.docs = docs;
     		}
     		this.loadData(url, action, error);
     	},
     	makeQuery: function() {
+    		app.activate(["spinner"]);
     		var form = this.get("querybar_form")
     		var data = this.serializeForm(form);
     		if ( store.getters.currentDb !== undefined && store.getters.currentTable !== undefined ) {

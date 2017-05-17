@@ -144,3 +144,15 @@ div {
 .number {
 	color:green;
 }
+#spinner {
+	width:100%;
+	padding-top:1em;
+	text-align:center !important;
+	font-size:220%;
+	color:grey;
+}
+#spinner-text {
+	position:relative;
+	top:1em;
+	padding-bottom:2em;
+}

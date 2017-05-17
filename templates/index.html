@@ -17,6 +17,10 @@
 			<div id="querybar" class="flex" v-if="store.getters.currentTable">
 				{{ template "querybar.html" . }}
 			</div>
+			<div id="spinner" v-if="isActive('spinner')">
+				<span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span>
+				<div id="spinner-text">Running query ...</div>
+			</div>
 			<div v-for="(d, i) in docs">
 				<div class="light big pull-right" v-html="getDocNum(i)"></div>
 				<div class="result_cell" v-show="isActive('docs')" v-html="formatDoc(i)">

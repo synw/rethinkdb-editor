@@ -15,9 +15,9 @@ const store = new Vuex.Store({
 			}
 		},
 		deactivate(state, elems) {
-			for (i=0;i<state.active.length;i++) {
-				if (elems[i] === state.active[i]) {
-					var index = state.active.indexOf(elems[i]);
+			for (i=0;i<elems.length;i++) {
+				var index = state.active.indexOf(elems[i]);
+				if (index > -1) {
 					state.active.splice(index, 1);
 				}
 			}
