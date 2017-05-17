@@ -1,10 +1,11 @@
-<form id="querybar_form">
-<fieldset class="flex one gr">
-	<label>
-		<span>Pluck</span>&nbsp;<input type="text" name="pluck" size="24" placeholder="field1,field2" style="max-width:8em">
-		<span data-tooltip="Default is 100. Type 0 for no limit">Limit</span>&nbsp;<input type="text" name="limit" size="3" placeholder="100" style="max-width:4em">
-		<button class="btn-default" v-bind:data-tooltip="countTt()">Count</button>
-		<a href="" @click="makeQuery()"><button class="success">Run</button></a>
-	</label>
-</fieldset>
-</form>
+<div class="gc gr">
+	<form id="querybar_form">
+		<fieldset>
+			<span>Pluck</span>&nbsp;<input type="text" name="pluck" size="24" placeholder="field1,field2" style="max-width:8em">
+			<span data-tooltip="Default is 100. Type 0 for no limit">Limit</span>&nbsp;<input type="text" name="limit" size="3" 
+			placeholder="100" style="max-width:4em">
+			<button class="btn-default" v-bind:data-tooltip="countTt()">Count</button>
+			<a href="" @click="makeQuery()"><button class="success">Run</button></a>
+		</fieldset>
+	</form>
+</div>

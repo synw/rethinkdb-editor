@@ -35,6 +35,9 @@ div {
 .btn {
 	display:inline;
 }
+.nb {
+	border:0;
+}
 /* ##################################### Skeleton ##################################### */
 #header {
 	min-height:50px;
