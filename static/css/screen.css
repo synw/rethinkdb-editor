@@ -123,7 +123,7 @@ div {
 	opacity:0.5;
 }
 .big {
-	font-size:150%;
+	font-size:130%;
 }
 .small {
 	font-size:85%;
@@ -150,7 +150,7 @@ div {
 	padding-bottom:2em;
 }
 .edit-btn {
-	margin-right:2em;
+	margin-right:1.4em;
 }
 .edit-btns {
 	position:relative;

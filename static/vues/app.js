@@ -19,6 +19,7 @@ const app = new Vue({
 			this.loadData(url, action, error);
 		},
 		loadTables: function(db) {
+			this.reset();
 			if (!db) { db = store.getters.currentDb };
 			var q = '{tables(db:"'+db+'"){name}}';
 			var url = this.query(q);
@@ -43,6 +44,7 @@ const app = new Vue({
 			}
 		},
 		useTable: function(db, table, oldtable) {
+			this.reset();
 			if ( this.isActive("currentDb") === false ) {
 				this.useDb(db);
 				store.dispatch("setCurrentDb", db)
@@ -55,8 +57,13 @@ const app = new Vue({
 			var payload = {"table": table, "oldtable": oldtable};
 		},
     	loadDb: function(db) {
+    		this.reset();
     		var url = "/"+db;
 			page(url);
+    	},
+    	reset: function() {
+    		this.docs = [];
+    		this.doc = {};
     	},
 		countTt: function() {
 			var s = "Count documents in table "+store.getters.currentTable;

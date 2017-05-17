@@ -4,9 +4,7 @@ var jsoneditMixin = {
     data: function() {
         return {
         	docs: [],
-        	numDocs: 0,
         	doc: {},
-        	json: "",
         };
     },
     methods: {
