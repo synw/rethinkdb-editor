@@ -69,15 +69,11 @@ const store = new Vuex.Store({
 		fillSidebar(context, content) {
 			context.commit("fillSidebar", content);
 		},
-		/*setDocs(context, content) {
-			context.commit("getDocs", docs);
-		},*/
 	},
 	getters: {
 		active: function(state) { return state.active },
 		dbs: function(state) { return state.dbs },
     	tables: function(state) { return state.tables },
-    	//docs: function(state) { return state.docs },
     	currentDb: function(state) { return state.currentDb },
     	currentTable: function(state) { return state.currentTable },
     	pageTitle: function(state) { return state.pageTitle },
