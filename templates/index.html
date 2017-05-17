@@ -22,7 +22,17 @@
 				<div id="spinner-text">Running query ...</div>
 			</div>
 			<div v-for="(d, i) in docs">
-				<div class="light big pull-right" v-html="getDocNum(i)"></div>
+				<div style="padding:0">
+					<div class="pull-right edit-btns">
+						<h3 class="btn">
+							<a href=""><span class="label neutral">Json</span></a>
+						</h3>
+						<h3 class="btn edit-btn">
+							<a href=""><span class="label">Edit</span></a>
+						</h3>
+					</div>
+					<span class="num light big" v-html="getDocNum(i)"></span>
+				</div>
 				<div class="result_cell" v-show="isActive('docs')" v-html="formatDoc(i)">
 				</div>
 			</div>

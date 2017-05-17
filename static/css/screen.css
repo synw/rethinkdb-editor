@@ -27,6 +27,14 @@ div {
 	background-color:lime;
 	boder: 1px solid dashed;
 }
+.neutral {
+	background-color:white;
+	color:grey;
+	border:1px solid lightgrey;
+}
+.btn {
+	display:inline;
+}
 /* ##################################### Skeleton ##################################### */
 #header {
 	min-height:50px;
@@ -48,21 +56,6 @@ div {
 }
 #topbar a:hover {
 	color:grey !important;
-}
-
-#navbar .list-inline a:hover, #navbar .list-inline a.active {
-	color:darkslategrey !important;
-	background-color:white;
-}
-#navbar {
-	background-color:grey;
-	padding:0 0 0 6em;
-	height:2.9em;
-	line-height:2.9em;
-}
-#navbar .btn {
-	padding:0.9em 0.4em 0.9em 0.4em;
-	vertical-align:baseline;
 }
 #content {
 	min-height:40em;
@@ -111,7 +104,7 @@ div {
 }
 .result_cell {
 	border-bottom:1px solid lightgrey;
-	margin:0.5em 0 0.5em 0;
+	margin:0 0 0.5em 0;
 	padding-bottom:0.8em;
 }
 #results_title {
@@ -155,4 +148,16 @@ div {
 	position:relative;
 	top:1em;
 	padding-bottom:2em;
+}
+.edit-btn {
+	margin-right:2em;
+}
+.edit-btns {
+	position:relative;
+	top:0.8em;
+}
+.num {
+	margin-left:2em;
+	position:relative;
+	top:0.6em;
 }

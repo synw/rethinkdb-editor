@@ -1,4 +1,4 @@
-var vvDebug = true;
+var vvDebug = false;
 
 var vvMixin = {
     data: function() {
