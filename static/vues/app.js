@@ -102,6 +102,17 @@ const app = new Vue({
     		}
     		this.loadData(url, action, error);
     	},
+    	countQuery: function() {
+    		app.activate(["spinner"]);
+    		var form = this.get("querybar_form")
+    		var data = this.serializeForm(form);
+    		if ( store.getters.currentDb !== undefined && store.getters.currentTable !== undefined ) {
+    			var q = 'count(db:"'+store.getters.currentDb+'",table:"'+store.getters.currentTable+'"){num}';
+    			this.runQuery(q);
+    		} else {
+    			console.log("ERROR: database or table are not set")
+    		}
+    	},
     	makeQuery: function() {
     		app.activate(["spinner"]);
     		var form = this.get("querybar_form")

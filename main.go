@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"flag"
+	"fmt"
 	"github.com/synw/goregraph/db"
-	"github.com/synw/rethinkdb-editor/lib-r/state"
 	"github.com/synw/rethinkdb-editor/lib-r/httpServer"
+	"github.com/synw/rethinkdb-editor/lib-r/state"
 )
-
 
 var dev_mode = flag.Bool("d", false, "Dev mode")
 var verbosity = flag.Int("v", 1, "Verbosity")
@@ -24,16 +23,12 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	dbs, tr := db.GetDbs()
-	if tr != nil {
-		tr.Formatc()
-	}
-	state.Dbs = dbs
+	state.Dbs = db.GetDbs()
 	// run http server
-	defer httpServer.Stop() 
-	if state.Verbosity > 0 { 
-		defer fmt.Println("Exit") 
+	defer httpServer.Stop()
+	if state.Verbosity > 0 {
+		defer fmt.Println("Exit")
 	}
 	httpServer.InitHttpServer(true)
-	select{}
+	select {}
 }

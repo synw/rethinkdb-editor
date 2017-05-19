@@ -3,10 +3,9 @@ package conf
 import (
 	"errors"
 	"github.com/spf13/viper"
-	"github.com/synw/terr"
 	"github.com/synw/goregraph/lib-r/types"
+	"github.com/synw/terr"
 )
-
 
 func GetConf(dev bool, verbosity int) (*types.Conf, *terr.Trace) {
 	var conf *types.Conf
@@ -18,6 +17,7 @@ func GetConf(dev bool, verbosity int) (*types.Conf, *terr.Trace) {
 	}
 	viper.AddConfigPath(".")
 	viper.SetDefault("addr", "localhost:28015")
+	viper.SetDefault("host", ":8080")
 	viper.SetDefault("user", "")
 	viper.SetDefault("password", "")
 	// get the actual conf
@@ -33,10 +33,11 @@ func GetConf(dev bool, verbosity int) (*types.Conf, *terr.Trace) {
 			return conf, trace
 		}
 	}
+	host := viper.Get("host").(string)
 	addr := viper.Get("addr").(string)
 	user := viper.Get("user").(string)
 	pwd := viper.Get("password").(string)
 	cors := []string{addr}
-	endconf := &types.Conf{addr, user, pwd, dev, verbosity, cors}
+	endconf := &types.Conf{"rethinkdb", host, addr, user, pwd, dev, verbosity, cors}
 	return endconf, nil
 }
