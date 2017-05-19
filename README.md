@@ -26,7 +26,7 @@ Set your database location and credentials:
 
    ```javascript
    {
-   	"host": "localhost:8080",
+    "host": "localhost:8080",
 	"addr":"localhost:28015",
 	"user":"username",
 	"password":"password"
