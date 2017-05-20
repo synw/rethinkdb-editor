@@ -44,14 +44,14 @@ Then run and open `http://localhost:8080`
 - [x] Explore databases and tables
 - [x] Fetch arbitrary documents from the database
 - [x] Format documents and detect types
+- [ ] Backend mutations to save document
 - [ ] Add document
 - [ ] Query timeout
+- [ ] Display more info in ui about query results
 - [ ] Basic inline edit features
 - [ ] Add option to use Codemirror to edit some fields
-- [ ] Backend mutations to save document
-- [ ] Users and permissions management
+- [ ] Users and group permissions management
 - [ ] Alternate simplified ui for editors with limited rights
-- [ ] Display more info in ui about query results
 - [ ] Delete documents
 - [ ] Create databases and tables
 - [ ] Table level imutability option
