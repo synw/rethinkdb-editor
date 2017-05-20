@@ -44,6 +44,8 @@ Then run and open `http://localhost:8080`
 - [x] Explore databases and tables
 - [x] Fetch arbitrary documents from the database
 - [x] Format documents and detect types
+- [ ] Add document
+- [ ] Query timeout
 - [ ] Basic inline edit features
 - [ ] Add option to use Codemirror to edit some fields
 - [ ] Backend mutations to save document
@@ -57,5 +59,7 @@ Then run and open `http://localhost:8080`
 
 ## Todo
 
-- [ ] Nested pluck query support
+- [ ] Nested pluck queries
+- [ ] Secondary indexes queries
+- [ ] Range queries
 - [ ] Detect date type and use date picker widget
