@@ -6,6 +6,7 @@ import (
 	"github.com/synw/goregraph/db"
 	"github.com/synw/rethinkdb-editor/lib-r/httpServer"
 	"github.com/synw/rethinkdb-editor/lib-r/state"
+	"github.com/synw/terr"
 )
 
 var dev_mode = flag.Bool("d", false, "Dev mode")
@@ -21,7 +22,8 @@ func main() {
 	// init db
 	err := db.Init(state.Conf)
 	if err != nil {
-		fmt.Println(err)
+		tr := terr.Add("main", err)
+		tr.Fatal("initializing database")
 	}
 	state.Dbs = db.GetDbs()
 	// run http server
