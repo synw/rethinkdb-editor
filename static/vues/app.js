@@ -45,15 +45,19 @@ const app = new Vue({
 		},
 		useTable: function(db, table, oldtable) {
 			this.reset();
+			this.flush();
 			if ( this.isActive("currentDb") === false ) {
 				this.useDb(db);
 				store.dispatch("setCurrentDb", db)
 			}
 			if ( this.isActive("currentTable") === false ) {
-				store.dispatch("activate", ["currentTable"]);
+				this.activate(["currentTable"]);
+			}
+			if ( this.isActive("docs") === false ) {
+				this.activate(["docs"]);
 			}
 			store.dispatch("setCurrentTable", table);
-			store.dispatch("activate", ["currentTable"]);
+			this.activate(["querybar"]);
 			var payload = {"table": table, "oldtable": oldtable};
 		},
     	loadDb: function(db) {

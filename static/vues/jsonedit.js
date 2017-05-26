@@ -11,6 +11,14 @@ var jsoneditMixin = {
     	jsonDoc: function(doc) {
     		return "<pre>"+this.str(doc)+"</pre>";
     	},
+    	editDoc: function(doc) {
+			db = store.getters.currentDb;
+			table = store.getters.currentTable;
+			this.deactivate(["docs"]);
+			this.activate(["doc"]);
+			this.doc = doc;
+			console.log("DOC", doc);
+		},
 	    formatDoc: function(oIndex, data, sIndent) {
 	    	var oData = {}
 	    	if (oIndex > -1) {

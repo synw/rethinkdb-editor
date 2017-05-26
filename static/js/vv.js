@@ -1,9 +1,9 @@
-var vvDebug = false;
+var vvDebug = true;
 
 var vvMixin = {
     data: function() {
         return {
-        	active: [],
+        	debug: false,
         };
     },
     methods: {
@@ -13,7 +13,7 @@ var vvMixin = {
 			for (i=0;i<store.getters.active.length;i++) {
 				if (vvDebug === true) {if (preserve) {console.log("Preserve: "+store.getters.active[i]+" / "+preserve)}};
 				if (store.getters.active[i] != preserve) {
-					var t = typeOf(store.getters.active[i]);
+					var t = this.typeOf(store.getters.active[i]);
 					if (t === "string") {
 						if (vvDebug === true) { console.log(" [x] Flushing "+store.getters.active[i]+" (string)")};
 						store.getters.active[i] = "";
@@ -108,6 +108,9 @@ var vvMixin = {
 		},
 		get: function(node) {
 			return document.getElementById(node)
+		},
+		typeOf: function(obj) {
+			return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
 		},
     }
 };
