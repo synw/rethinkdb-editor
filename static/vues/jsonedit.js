@@ -8,16 +8,14 @@ var jsoneditMixin = {
         };
     },
     methods: {
-    	jsonDoc: function(doc) {
-    		return "<pre>"+this.str(doc)+"</pre>";
+    	jsonDoc: function() {
+    		console.log("GET DOC", this.doc);
+    		return "<pre>"+this.str(this.doc)+"</pre>";
     	},
     	editDoc: function(doc) {
-			db = store.getters.currentDb;
-			table = store.getters.currentTable;
-			this.deactivate(["docs"]);
-			this.activate(["doc"]);
 			this.doc = doc;
-			console.log("DOC", doc);
+			this.deactivate(["querybar", "sidebar", "docs"]);
+			this.activate(["doc"]);
 		},
 	    formatDoc: function(oIndex, data, sIndent) {
 	    	var oData = {}

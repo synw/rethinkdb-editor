@@ -42,10 +42,12 @@ const app = new Vue({
 			if ( this.isActive("currentTable") === true ) {
 				store.dispatch("deactivate", ["currentTable"]);
 			}
+			if ( this.isActive("sidebar") === false ) {
+				this.activate(["sidebar"])
+			}
 		},
 		useTable: function(db, table, oldtable) {
 			this.reset();
-			this.flush();
 			if ( this.isActive("currentDb") === false ) {
 				this.useDb(db);
 				store.dispatch("setCurrentDb", db)
@@ -56,8 +58,10 @@ const app = new Vue({
 			if ( this.isActive("docs") === false ) {
 				this.activate(["docs"]);
 			}
+			if ( this.isActive("querybar") === false ) {
+				this.activate(["querybar"]);
+			}
 			store.dispatch("setCurrentTable", table);
-			this.activate(["querybar"]);
 			var payload = {"table": table, "oldtable": oldtable};
 		},
     	loadDb: function(db) {

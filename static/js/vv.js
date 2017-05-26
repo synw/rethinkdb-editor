@@ -1,9 +1,9 @@
-var vvDebug = true;
+var vvDebug = false;
 
 var vvMixin = {
     data: function() {
         return {
-        	debug: false,
+        	active: [],
         };
     },
     methods: {
